@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   has_many :rewards
   has_many :pledges
   has_many :users, through: :pledges # backers
+  belongs_to :category
   belongs_to :user # project owner
 
   validates :goal, :numericality => {:greater_than => 0}
