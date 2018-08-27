@@ -13,3 +13,15 @@
 
   <%= f.submit %>
 <% end %>
+
+<% if @reward.errors.any? %>
+  <div class="error-block">
+    <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+    <ul>
+      <% @reward.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
