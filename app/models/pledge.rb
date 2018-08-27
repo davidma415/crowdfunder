@@ -9,5 +9,6 @@ class Pledge < ApplicationRecord
 
   def check_owner
     errors.add(:user_id, "cannot contribute to their own project") if project.user == self.user
+
   end
 end
