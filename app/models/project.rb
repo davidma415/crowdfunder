@@ -25,4 +25,5 @@ class Project < ActiveRecord::Base
       errors.add(:project, "end date cant be earlier than start date")
     end
   end
+
 end
