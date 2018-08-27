@@ -2,6 +2,12 @@ Pledge.destroy_all
 Reward.destroy_all
 User.destroy_all
 Project.destroy_all
+Category.destroy_all
+['Technology', 'Art', 'Sports'].each do |category|
+  Category.create!(
+    name: category
+  )
+end
 
 5.times do
   User.create!(
@@ -20,7 +26,8 @@ end
               description: Faker::Lorem.paragraph,
               goal: rand(100000),
               start_date: Time.now.utc - rand(60).days,
-              end_date: Time.now.utc + rand(10).days
+              end_date: Time.now.utc + rand(10).days,
+              category_id: Category.pluck(:id).sample
             )
 
   5.times do
