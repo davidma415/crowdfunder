@@ -15,7 +15,7 @@
 
 <% if @user.errors.any? %>
   <div class="error-block">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+    <h2><%= pluralize(@user.errors.count, "error") %> user error:</h2>
 
     <ul>
       <% @user.errors.full_messages.each do |msg| %>
