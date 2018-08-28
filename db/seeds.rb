@@ -25,15 +25,15 @@ end
               title: Faker::App.name,
               description: Faker::Lorem.paragraph,
               goal: rand(100000),
-              start_date: Time.now.utc - rand(60).days,
-              end_date: Time.now.utc + rand(10).days,
+              start_date: Time.now.utc + rand(2..10).days,
+              end_date: Time.now.utc + rand(11..30).days,
               category_id: Category.pluck(:id).sample
             )
 
   5.times do
     project.rewards.create!(
       description: Faker::Superhero.power,
-      dollar_amount: rand(100),
+      dollar_amount: rand(2..100),
     )
   end
 end
