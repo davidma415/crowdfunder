@@ -8,9 +8,17 @@
 <% end %>
 
 <p><%= @project.description %></p>
+<% if @backers.include?(current_user) %>
+  <p>You have already backed this project.</p>
+<% end %>
+<p>Currently raised: <%= number_to_currency(@project.total_pledges) %></p>
 <p>Goal: <%= number_to_currency(@project.goal) %></p>
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
+<time class="project-days-left">
+  <%= icon('clock-o') %>
+  <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %>
+</time>
 
 <%= form_for [@project, Pledge.new] do |f| %>
   <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
