@@ -30,8 +30,7 @@
   </div>
 
   <div>
-    <%= f.label :name%>
-    <%= f,text_field :name %>
+    <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name") %>
   </div>
 
   <%= f.submit %>
