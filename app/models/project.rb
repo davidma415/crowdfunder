@@ -27,4 +27,12 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def total_pledges
+    total = 0
+    self.pledges.each do |pledge|
+      total += pledge.dollar_amount
+    end
+    return total
+  end
+
 end
