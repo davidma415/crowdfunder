@@ -1,6 +1,6 @@
 <h1><%= @project.title %></h1>
 <p>
-  Created by <%= link_to "#{User.find(@project.user_id).first_name} #{User.find(@project.user_id).last_name}", user_path(@project.user_id) %>
+  Created by <%= link_to "#{User.find(@project.user_id).first_name} #{User.find(@project.user_id).last_name}", user_path(@project.user_id) %> under the category <%= link_to @project.category.name, category_path(@project.category) %>
 </p>
 
 <% if @project.image.present? %>
