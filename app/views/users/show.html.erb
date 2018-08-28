@@ -5,7 +5,7 @@
 <% @pledges.each do |pledge| %>
   <div class="pledge-info">
   <h4><%= Project.find(pledge.project_id).title %></h4>
-  <p>You pledged $<%="%0.0f" % pledge.dollar_amount %>.</p>
+  <p><%= @user.first_name %> pledged $<%="%0.0f" % pledge.dollar_amount %>.</p>
   </div>
 <% end %>
 
