@@ -8,6 +8,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @pledges = @project.pledges
+    @total_pledges = @project.total_pledges
+    @backers = @project.users
   end
 
   def new
