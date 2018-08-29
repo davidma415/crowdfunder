@@ -18,9 +18,4 @@ class User < ActiveRecord::Base
     end
     return total
   end
-
-  def latest_updates(num)
-    updates = Update.find_by(project_id: self.id)
-    return updates.order(created_at: :desc).limit(num)
-  end
 end

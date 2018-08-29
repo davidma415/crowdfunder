@@ -24,6 +24,7 @@
   <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
   <%= f.submit "Pledge" %>
 <% end %>
+
 <h2>Recent Updates</h2>
 <% @latest_updates.each do |update| %>
   <div class="display-update">
@@ -32,6 +33,7 @@
     <p><%= update.description %></p>
   </div>
 <% end %>
+
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
