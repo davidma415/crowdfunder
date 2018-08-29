@@ -1,4 +1,5 @@
 class UpdatesController < ApplicationController
+  before_action :require_login, except: [:index, :show]
 
   def create
     @project = Project.find(params[:project_id])
@@ -17,7 +18,7 @@ class UpdatesController < ApplicationController
   end
   def edit
     @update = Update.find(params[:id])
-    @project = Product.find(params[:project_id])
+    @project = Project.find(params[:project_id])
   end
   def update
   end
