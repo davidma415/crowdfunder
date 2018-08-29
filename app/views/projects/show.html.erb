@@ -25,13 +25,15 @@
   <%= f.submit "Pledge" %>
 <% end %>
 
-<h2>Recent Updates</h2>
-<% @latest_updates.each do |update| %>
-  <div class="display-update">
-    <h4><%= update.name %></h4>
-    <h5><%= update.created_at.strftime("%A %B %d %Y - %l:%M:%S %P") %></h5>
-    <p><%= update.description %></p>
-  </div>
+<% if @backers.include?(current_user) || @project.user == current_user%>
+  <h2>Recent Updates</h2>
+  <% @latest_updates.each do |update| %>
+    <div class="display-update">
+      <h4><%= update.name %></h4>
+      <h5><%= update.created_at.strftime("%A %B %d %Y - %l:%M:%S %P") %></h5>
+      <p><%= update.description %></p>
+    </div>
+  <% end %>
 <% end %>
 
 <h2>Rewards</h2>
