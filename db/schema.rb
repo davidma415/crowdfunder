@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_213249) do
+ActiveRecord::Schema.define(version: 2018_08_29_034653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_213249) do
     t.bigint "project_id"
     t.index ["project_id"], name: "index_pledges_on_project_id"
     t.index ["user_id"], name: "index_pledges_on_user_id"
-  end
-
-  create_table "progress", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|
@@ -60,8 +53,14 @@ ActiveRecord::Schema.define(version: 2018_08_28_213249) do
   end
 
   create_table "updates", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.index ["project_id"], name: "index_updates_on_project_id"
+    t.index ["user_id"], name: "index_updates_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -77,4 +76,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_213249) do
 
   add_foreign_key "pledges", "projects"
   add_foreign_key "pledges", "users"
+  add_foreign_key "updates", "projects"
+  add_foreign_key "updates", "users"
 end

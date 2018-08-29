@@ -36,4 +36,10 @@ class Project < ActiveRecord::Base
     return total
   end
 
+  def latest_updates(num)
+  #   updates = Update.find_by(project_id: self.id)
+  #   return updates.order(created_at: :desc).limit(num)
+    return Update.order(created_at: :desc).where(project_id: self.id)
+  end
+
 end

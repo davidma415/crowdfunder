@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     @total_pledges = @project.total_pledges
     @backers = @project.users
     @update = Update.new
+    @latest_updates = @project.latest_updates(5)
   end
 
   def new

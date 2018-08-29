@@ -1,3 +1,4 @@
 class Update < ApplicationRecord
-  belongs_to :projects
+  belongs_to :project
+  belongs_to :user
 end

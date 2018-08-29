@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :pledges
   has_many :projects
+  has_many :updates
 
   validates :password, length: { minimum: 8 }, on: :create
   validates :password, confirmation: true, on: :create
@@ -16,5 +17,10 @@ class User < ActiveRecord::Base
       total += pledge.dollar_amount
     end
     return total
+  end
+
+  def latest_updates(num)
+    updates = Update.find_by(project_id: self.id)
+    return updates.order(created_at: :desc).limit(num)
   end
 end
