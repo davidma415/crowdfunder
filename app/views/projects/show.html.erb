@@ -27,13 +27,40 @@
 
 <% if @backers.include?(current_user) || @project.user == current_user%>
   <h2>Recent Updates</h2>
-  <% @latest_updates.each do |update| %>
-    <div class="display-update">
-      <h4><%= update.name %></h4>
-      <h5><%= update.created_at.strftime("%A %B %d %Y - %l:%M:%S %P") %></h5>
-      <p><%= update.description %></p>
-    </div>
+  <% if @latest_updates.empty? %>
+  <h4>No updates have been posted.</h4>
+  <% else %>
+    <% @latest_updates.each do |update| %>
+      <div class="display-update">
+        <h4><%= update.name %></h4>
+        <h5><%= update.created_at.strftime("%A %B %d %Y - %l:%M:%S %P") %></h5>
+        <p><%= update.description %></p>
+      </div>
+    <% end %>
   <% end %>
+<% end %>
+
+<section class='display-recent-comments'>
+  <h2>Comments</h2>
+  <% if @latest_comments.empty? %>
+  <h4>No comments posted.</h4>
+  <% else %>
+    <% @latest_comments.each do |comment| %>
+      <div class="display-comment">
+        <h4><%= comment.title %> - <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h4>
+        <h5><%= comment.created_at.strftime("%A %B %d %Y - %l:%M:%S %P") %></h5>
+        <p><%= comment.content %></p>
+      </div>
+    <% end %>
+  <% end %>
+
+</section>
+
+<% if @backers.include?(current_user) %>
+  <section class="comment-form">
+    <h4>Add a Comment</h4>
+    <%= render 'comments/form' %>
+  </section>
 <% end %>
 
 <h2>Rewards</h2>

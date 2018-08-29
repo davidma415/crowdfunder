@@ -12,6 +12,8 @@ class ProjectsController < ApplicationController
     @total_pledges = @project.total_pledges
     @backers = @project.users
     @update = Update.new
+    @comment = Comment.new
+    @latest_comments = @project.latest_comments(5)
     @latest_updates = @project.latest_updates(5)
   end
 
