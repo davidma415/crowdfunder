@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   has_many :updates
+  has_many :comments
   has_many :rewards
   has_many :pledges
   has_many :users, through: :pledges # backers
@@ -39,7 +40,13 @@ class Project < ActiveRecord::Base
   def latest_updates(num)
   #   updates = Update.find_by(project_id: self.id)
   #   return updates.order(created_at: :desc).limit(num)
-    return Update.order(created_at: :desc).where(project_id: self.id)
+    return Update.order(created_at: :desc).where(project_id: self.id).limit(num)
+  end
+
+  def latest_comments(num)
+  #   updates = Update.find_by(project_id: self.id)
+  #   return updates.order(created_at: :desc).limit(num)
+    return Comment.order(created_at: :desc).where(project_id: self.id).limit(num)
   end
 
 end
