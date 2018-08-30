@@ -76,6 +76,11 @@
   <% end %>
 <% end %>
 
+<h2>Backers</h2>
+<% @project.users.each do |backer| %>
+  <p><%= backer.first_name %> <%= backer.last_name %></p>
+<% end %>
+
 
 
 <% if current_user == @project.user %>
